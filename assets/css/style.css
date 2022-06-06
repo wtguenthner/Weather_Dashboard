@@ -1,0 +1,39 @@
+nav{
+    width:100%;
+    text-align: center;
+    background-color: darkblue;
+    color: white;
+}
+h1{
+    font-size: 48px;
+}
+
+h2{
+    font-size: 36px;
+}
+
+aside{
+    display: inline-block;
+    text-align: center;
+    width:25%;
+    background-color: lightgrey;
+}
+#searchInput{
+    width:95%;
+    height:40px;
+}
+#searchButton{
+    border-radius: 5px;
+    background-color: darkblue;
+    color:white;
+    width:95%;
+    font-size: 24px;
+    
+}
+.button{
+    text-align: center;
+    background-color: black;
+    color:white;
+    border-radius: 5px;
+    width:50%;
+}
