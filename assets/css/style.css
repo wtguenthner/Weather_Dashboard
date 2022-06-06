@@ -15,9 +15,18 @@ h2{
 aside{
     display: inline-block;
     text-align: center;
-    width:25%;
+    min-width:300px;
     background-color: lightgrey;
+    flex-grow: 1;
 }
+main{
+    margin:5px;
+}
+.container{
+    display:flex;
+    
+}
+
 #searchInput{
     width:95%;
     height:40px;
@@ -36,4 +45,21 @@ aside{
     color:white;
     border-radius: 5px;
     width:50%;
+}
+.forecast{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.current{
+    border-style: solid;
+    border-color: black;
+}
+.forecastDisplay{
+    
+    background-color: grey;
+    border-radius: 5px;
+    width: fit-content;
+    height:30vh;
+    margin:5px;
 }

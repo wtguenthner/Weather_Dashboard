@@ -1,27 +1,42 @@
 
 var searchFormEl = document.querySelector('#searchForm');
 var cityList = document.querySelector('#cityList');
-var listOfCities = []
+var store = eval(localStorage.cities) || [];
 
-function displayCities(){
-    var cityName = document.querySelector('#searchInput').value;
-    // var listOfCities = localStorage.getItem('cities');
-    listOfCities.push(cityName)
-    localStorage.setItem('cities', JSON.stringify(listOfCities))
-  
+document.querySelector('button').addEventListener('click', handleClick);
+
+function handleClick(e) {
+  e.preventDefault();
+let city = document.querySelector('#searchInput').value;
+
+if(!city) return;
+
+store.push(city)
+console.log(store)
+
+localStorage.setItem('cities',store)
+
+displayCity();
+
+let url= `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
 
 
+fetch(url).then(data=>data.json()).then(data => {
 
+  const {lat,lon} = data[0];
 
+  let url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+  fetch(url2).then(data=>data.json()).then(data => {
 
-    
-    for(var x=0; x < listOfCities.length; x++){
-    var results = document.createElement('div')
-    results.classList.add('button');
-    results.textContent = listOfCities[x];
-    cityList.append(results);
-  }
-
+    let { current, daily } = data;
+    jsonData = data;
+    console.log(data)
+  })
+})
 
 }
 
+function displayCity(){
+
+  cityList.innerHTML = store
+}
