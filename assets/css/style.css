@@ -51,8 +51,9 @@ main{
     background-color: cornflowerblue;
     color:white;
     border-radius: 5px;
-    width:100%;
+    width:95%;
     font-size: 20pt;
+    margin:10px;
     
 }
 .forecast{
@@ -62,9 +63,13 @@ main{
 }
 .current{
     border-style: solid;
+    background-color: lightgray;
     border-color: black;
     border-width: 3px;
     border-radius: 5px;
+    font-size: 24px;
+    padding:10px;
+    min-height: 200px;
 }
 .forecastDisplay{
     
@@ -73,6 +78,7 @@ main{
     width: fit-content;
     height:fit-content;
     margin:5px;
+    padding:10px;
     border-style: solid;
     border-width: 1px;
 }
@@ -86,4 +92,10 @@ main{
     width:60%;
     background-color: azure;
     border-radius: 5px;
+}
+
+#currentCity{
+
+    font-size: 36pt;
+    
 }
