@@ -1,20 +1,27 @@
 
 var searchFormEl = document.querySelector('#searchForm');
-var cityList = document.querySelector('#cityList');
-var store = eval(localStorage.cities) || [];
-
+var cityDisplay = document.querySelector('#cityList');
+// var store = eval(localStorage.cities) || [];
+// var store = localStorage.getItem('cities') || [];
 document.querySelector('button').addEventListener('click', handleClick);
 
 function handleClick(e) {
   e.preventDefault();
 let city = document.querySelector('#searchInput').value;
-
 if(!city) return;
 
-store.push(city)
-console.log(store)
+if (localStorage.getItem('cities') == null) {
+  localStorage.setItem('cities', '[]')
+}
 
-localStorage.setItem('cities',store)
+var cityList = JSON.parse(localStorage.getItem('cities'));
+cityList.push(city);
+localStorage.setItem('cities', JSON.stringify(cityList));
+
+
+
+
+
 
 displayCity();
 
@@ -37,6 +44,17 @@ fetch(url).then(data=>data.json()).then(data => {
 }
 
 function displayCity(){
+  cityDisplay.innerHTML = " "
+cityList = JSON.parse(localStorage.getItem('cities'))
+if(cityList!=null){
+for(var x =0; x < cityList.length; x++){
 
-  cityList.innerHTML = store
+  cityDisplay.innerHTML += `<p class = button>` + cityList[x] +`</p>`;
+}
+}
+}
+
+function clearStorage(){
+
+  localStorage.clear();
 }
