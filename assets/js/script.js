@@ -38,6 +38,7 @@ fetch(url).then(data=>data.json()).then(data => {
 
     jsonData = data;
     console.log(data)
+    
     displayCity();
     displayCurrent(jsonData,city);
   })
@@ -53,7 +54,8 @@ cityList = JSON.parse(localStorage.getItem('cities'))
 if(cityList!=null){
 for(var x =0; x < cityList.length; x++){
 
-  cityDisplay.innerHTML += `<button class=button onclick="displayCurrent(jsonData[x],cityList[x])">` + cityList[x] +`</button>`;
+  cityDisplay.innerHTML += `<button class=button>` + cityList[x] +`</button>`;
+  
 }
 }
 }
@@ -64,16 +66,28 @@ function clearStorage(){
 }
 
 function displayCurrent(jsonData, city){
+  var icon = jsonData.current.weather[0].icon
+  var weatherDescr = jsonData.current.weather[0].description
+  var myDate = new Date();
 
-  currentDisplay.innerHTML = `<h3>` +city.toUpperCase() + `</h3>`;
+//Object created for each aspect of the date that is needed
+const parts = {
+        date: myDate.getDate(),
+        day: myDate.getDay(),
+        month: myDate.getMonth(),
+        year: myDate.getFullYear(),
+        hour: myDate.getHours(),
+    };
+
+  currentDisplay.innerHTML = `<h3>` +city.toUpperCase() + " " + `(${parts.month+1}/` + parts.date + `/${parts.year})` +`<img src="http://openweathermap.org/img/wn/${icon}@2x.png" width="80" height="80" alt="${weatherDescr}" ></h3> `;
   currentDisplay.innerHTML += `<p>Temp: ${jsonData.current.temp}</p>` ;
   currentDisplay.innerHTML += `<p>Wind: ${jsonData.current.wind_speed} MPH</p>`;
   currentDisplay.innerHTML += `<p>Humidity: ${jsonData.current.humidity}%</p>`;
   if(jsonData.current.uvi < 2){
-  currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:green">${jsonData.current.uvi}</span</p>`;
+  currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:green;border-radius:5px">${jsonData.current.uvi}</span</p>`;
   }else if(jsonData.current.uvi > 7 ){
-    currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:red">${jsonData.current.uvi}</span</p>`;
+    currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:red;border-radius:5px">${jsonData.current.uvi}</span</p>`;
   }else{
-    currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:yellow">${jsonData.current.uvi}</span</p>`;
+    currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:yellow;border-radius:5px">${jsonData.current.uvi}</span</p>`;
   }
 }
