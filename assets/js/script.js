@@ -12,6 +12,7 @@ var forecastFour = document.querySelector('#forecastFour')
 var forecastFive = document.querySelector('#forecastFive')
 
 document.querySelector('#searchButton').addEventListener('click', handleClick);
+var apiKey = "8f87f54427e5d35cb5573ebaf16d36fb";
 displayCity();
 
 // Function for retrieving and setting the API and local storage values
