@@ -46,7 +46,7 @@ cityList = JSON.parse(localStorage.getItem('cities'))
 if(cityList!=null){
 for(var x =0; x < cityList.length; x++){
 
-  cityDisplay.innerHTML += `<button class=button value = ${cityList[x]} onclick = "displayPrevious(this.value)">` + cityList[x][0].toUpperCase() + cityList[x].substring(1) +`</button>`;
+  cityDisplay.innerHTML += `<button class=button value = ${cityList[x]} onclick = "displayPrevious(this.innerHTML)">` + cityList[x].toUpperCase() +`</button>`;
   
 }
 }

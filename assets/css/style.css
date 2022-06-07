@@ -29,10 +29,12 @@ aside{
     background-color: lightgrey;
     flex-grow: 1;
     border-radius: 5px;
+    border-style: solid;
+    
     
 }
 main{
-    margin:5px;
+    margin-left:5px;
 }
 .container{
     display:flex;
@@ -58,7 +60,7 @@ main{
     color:white;
     border-radius: 5px;
     width:95%;
-    font-size: 20pt;
+    font-size: 16pt;
     margin:10px;
     
 }
@@ -99,8 +101,8 @@ main{
 .clear{
     margin: 5px;
     font-size: 15px;
-    width:60%;
-    background-color: azure;
+    width:40%;
+    background-color: darkgray;
     border-radius: 5px;
 }
 
