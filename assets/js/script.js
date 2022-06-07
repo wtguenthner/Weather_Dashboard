@@ -71,7 +71,7 @@ const parts = {
         hour: myDate.getHours(),
     };
 
-  currentDisplay.innerHTML = `<h3>` + city[0].toUpperCase() + city.substring(1) + " " + `(${parts.month+1}/` + parts.date + `/${parts.year})` +`<img src="http://openweathermap.org/img/wn/${icon}@2x.png" width="80" height="80" alt="${weatherDescr}" ></h3> `;
+  currentDisplay.innerHTML = `<h3>` + city.toUpperCase() +  " " + `(${parts.month+1}/` + parts.date + `/${parts.year})` +`<img src="http://openweathermap.org/img/wn/${icon}@2x.png" width="80" height="80" alt="${weatherDescr}" ></h3> `;
   currentDisplay.innerHTML += `<p>Temp: ${jsonData.current.temp}</p>` ;
   currentDisplay.innerHTML += `<p>Wind: ${jsonData.current.wind_speed} MPH</p>`;
   currentDisplay.innerHTML += `<p>Humidity: ${jsonData.current.humidity}%</p>`;
