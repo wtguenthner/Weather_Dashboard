@@ -85,6 +85,7 @@ const parts = {
   currentDisplay.innerHTML += `<p>Temp: ${jsonData.current.temp}</p>` ;
   currentDisplay.innerHTML += `<p>Wind: ${jsonData.current.wind_speed} MPH</p>`;
   currentDisplay.innerHTML += `<p>Humidity: ${jsonData.current.humidity}%</p>`;
+  currentDisplay.innerHTML += `<p>Pressure: ${jsonData.current.pressure * .02953}</p>`;
 
   //Statement for determing the color of the text box for the UV index
   if(jsonData.current.uvi < 2){
