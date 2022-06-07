@@ -78,8 +78,7 @@ main h2{
     
 }
 #searchButton:hover{
-    background-color: grey;
-    color: darkblue;
+    opacity: 60%;
 }
 .button{
     text-align: center;
