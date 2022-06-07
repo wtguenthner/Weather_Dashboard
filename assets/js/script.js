@@ -4,7 +4,7 @@ var cityDisplay = document.querySelector('#cityList');
 var currentDisplay = document.querySelector('.current');
 // var store = eval(localStorage.cities) || [];
 // var store = localStorage.getItem('cities') || [];
-document.querySelector('button').addEventListener('click', handleClick);
+document.querySelector('#searchButton').addEventListener('click', handleClick);
 
 function handleClick(e) {
   e.preventDefault();
@@ -19,15 +19,7 @@ var cityList = JSON.parse(localStorage.getItem('cities'));
 cityList.push(city);
 localStorage.setItem('cities', JSON.stringify(cityList));
 
-
-
-
-
-
-
-
 let url= `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
-
 
 fetch(url).then(data=>data.json()).then(data => {
 
@@ -37,7 +29,7 @@ fetch(url).then(data=>data.json()).then(data => {
   fetch(url2).then(data=>data.json()).then(data => {
 
     jsonData = data;
-    console.log(data)
+    
     
     displayCity();
     displayCurrent(jsonData,city);
@@ -54,7 +46,7 @@ cityList = JSON.parse(localStorage.getItem('cities'))
 if(cityList!=null){
 for(var x =0; x < cityList.length; x++){
 
-  cityDisplay.innerHTML += `<button class=button>` + cityList[x] +`</button>`;
+  cityDisplay.innerHTML += `<button class=button value = ${cityList[x]} onclick = "displayPrevious(this.value)">` + cityList[x] +`</button>`;
   
 }
 }
@@ -90,4 +82,24 @@ const parts = {
   }else{
     currentDisplay.innerHTML += `<p>UV Index: <span style="background-color:yellow;border-radius:5px">${jsonData.current.uvi}</span</p>`;
   }
+}
+
+function displayPrevious(value){
+
+  var city = value;
+
+  let url= `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+
+fetch(url).then(data=>data.json()).then(data => {
+
+  const {lat,lon} = data[0];
+
+  let url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+  fetch(url2).then(data=>data.json()).then(data => {
+
+    jsonData = data;
+    displayCity();
+    displayCurrent(jsonData,city);
+  })
+})
 }
